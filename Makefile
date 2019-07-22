@@ -3,8 +3,7 @@ MYSQL_CONTAINER=information-system_mysql
 PHP_CONTAINER=information-system_php
 PHP_SERVICE=php
 EXEC=$(DC) exec
-API_DIRECTORY=api/
-CONSOLE=$(API_DIRECTORY)bin/console
+CONSOLE=$()bin/console
 COMMAND=$(EXEC) -u `id -u salah` $(PHP_SERVICE) sh -c
 
 AWK := $(shell command -v awk 2> /dev/null)
@@ -24,7 +23,7 @@ endif
 ##---------------------------------------------------------------------------
 
 .PHONY: install
-.PRECIOUS: $(API_DIRECTORY).env docker-compose.override.yml
+.PRECIOUS: $().env docker-compose.override.yml
 
 install: ## Process all step in order to setup the projects
 install: up
@@ -37,20 +36,20 @@ endif
 ## Docker
 ##---------------------------------------------------------------------------
 .PHONY: docker-files up down
-.PRECIOUS: $(API_DIRECTORY).env docker-compose.override.yml
+.PRECIOUS: $().env docker-compose.override.yml
 
-docker-files: $(API_DIRECTORY).env docker-compose.override.yml
+docker-files: $().env docker-compose.override.yml
 .PHONY: docker-files
 
-.env: $(API_DIRECTORY).env.dist
-	@if [ -f $(API_DIRECTORY).env ]; \
+.env: $().env.dist
+	@if [ -f $().env ]; \
 	then\
 		echo "\033[1;41m/!\ The .env.dist file has changed. Please check your .env file (this message will not be displayed again).\033[0m";\
-		touch $(API_DIRECTORY).env;\
+		touch $().env;\
 		exit 1;\
 	else\
-		echo cp $(API_DIRECTORY).env.dist $(API_DIRECTORY).env;\
-		cp $(API_DIRECTORY).env.dist $(API_DIRECTORY).env;\
+		echo cp $().env.dist $().env;\
+		cp $().env.dist $().env;\
 	fi
 
 docker-compose.override.yml: docker-compose.yml
