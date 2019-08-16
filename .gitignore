@@ -23,3 +23,7 @@ yarn-error.log
 ###< information-system ###
 .docker/data/
 ###> information-system ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

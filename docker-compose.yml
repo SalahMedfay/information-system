@@ -12,7 +12,7 @@ services:
           - php
 
     database:
-        image: mysql
+        image: mysql:8
         command: "--default-authentication-plugin=mysql_native_password"
         container_name: information-system_mysql
         volumes:

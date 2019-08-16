@@ -14,5 +14,5 @@ That's it ! Enjoy!
 - To enter `php` container, run `make php`
 - To enter `mysql` container, run `make mysql`
 - To get `PhpMyAdmin`, go to  [`http://localhost:8080`](http://localhost:8080) with `root`/`root` credentials.
-- To get your root app, go to [`http://localhost](http://localhost)
+- To get your documentation root, go to [`http://localhost/api/doc](http://localhost/api/doc)
 - To get Makefile commands list, run `make`.
