@@ -95,7 +95,7 @@ mysql:
 	docker exec -it -u `id -u ${USER}` $(MYSQL_CONTAINER) bash
 
 ##
-## Symfony
+## Cache
 ##---------------------------------------------------------------------------
 
 cc: ## Clear cache
@@ -104,17 +104,34 @@ cc:
 	$(COMMAND) "$(CONSOLE) c:c"
 	$(COMMAND) "$(CONSOLE) c:w"
 
-ddc: ## Create database
-ddc:
+##
+## Database
+##---------------------------------------------------------------------------
+
+db-create: ## Create database
+db-create:
 	@echo "Creating database..."
 	$(COMMAND) "$(CONSOLE) d:d:c"
 
-ddd: ## Drop database
-ddd:
+db-drop: ## Drop database
+db-drop:
 	@echo "Creating database..."
 	$(COMMAND) "$(CONSOLE) d:d:d --force"
 
-dmm: ## Execute migrations
-dmm:
+##
+## Migrations
+##---------------------------------------------------------------------------
+
+migrate: ## Execute migrations
+migrate:
 	@echo "Executing migrations..."
 	$(COMMAND) "$(CONSOLE) d:m:m -n"
+
+##
+## PHP-CS-FIXER
+##---------------------------------------------------------------------------
+
+fix: ## Execute php-cs-fixer
+fix:
+	@echo "Fix files..."
+	php-cs-fixer --config=.php_cs.dist --verbose fix --diff --allow-risky=yes
